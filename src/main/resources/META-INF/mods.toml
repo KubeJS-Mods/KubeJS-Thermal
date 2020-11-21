@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[32,)"
+issueTrackerURL = "https://github.com/KubeJS-Mods/KubeJS-Thermal/issues"
+license = "GNU LGPLv3"
+
+[[mods]]
+modId = "kubejs_thermal"
+version = "${file.jarVersion}"
+displayName = "KubeJS Mekanism"
+authors = "LatvianModder"
+description = '''
+KubeJS Thermal Expansion integration
+'''
+license = "GNU LGPLv3"
+
+[[dependencies.kubejs_thermal]]
+modId = "kubejs"
+mandatory = true
+versionRange = "[1604,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.kubejs_thermal]]
+modId = "thermal_expansion"
+mandatory = true
+versionRange = "[1,)"
+ordering = "AFTER"
+side = "BOTH"

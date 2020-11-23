@@ -61,18 +61,6 @@ public class ThermalInsolatorRecipeJS extends ThermalRecipeJS
 		}
 	}
 
-	public ThermalInsolatorRecipeJS energy(int e)
-	{
-		json.addProperty("energy", e);
-		return this;
-	}
-
-	public ThermalInsolatorRecipeJS energyMod(float e)
-	{
-		json.addProperty("energy_mod", e);
-		return this;
-	}
-
 	public ThermalInsolatorRecipeJS experience(float e)
 	{
 		json.addProperty("experience", e);

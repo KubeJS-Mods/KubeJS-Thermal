@@ -21,30 +21,28 @@ public class ThermalCatalystRecipeJS extends ThermalRecipeJS
 	public ThermalCatalystRecipeJS primaryMod(float f)
 	{
 		json.addProperty("primary_mod", f);
+		save();
 		return this;
 	}
 
 	public ThermalCatalystRecipeJS secondaryMod(float f)
 	{
 		json.addProperty("secondary_mod", f);
-		return this;
-	}
-
-	public ThermalCatalystRecipeJS energyMod(float f)
-	{
-		json.addProperty("energy_mod", f);
+		save();
 		return this;
 	}
 
 	public ThermalCatalystRecipeJS minChance(float f)
 	{
 		json.addProperty("min_chance", f);
+		save();
 		return this;
 	}
 
 	public ThermalCatalystRecipeJS useChance(float f)
 	{
 		json.addProperty("use_chance", f);
+		save();
 		return this;
 	}
 

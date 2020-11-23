@@ -59,29 +59,21 @@ public class BasicThermalRecipeJS extends ThermalRecipeJS
 		{
 			throw new RecipeExceptionJS("Thermal recipe can't have no ingredients!");
 		}
-	}
 
-	public BasicThermalRecipeJS energy(int e)
-	{
-		json.addProperty("energy", e);
-		return this;
-	}
-
-	public BasicThermalRecipeJS energyMod(float e)
-	{
-		json.addProperty("energy_mod", e);
-		return this;
+		json.addProperty("energy", 4000);
 	}
 
 	public BasicThermalRecipeJS experience(float e)
 	{
 		json.addProperty("experience", e);
+		save();
 		return this;
 	}
 
 	public BasicThermalRecipeJS minTicks(int i)
 	{
 		json.addProperty("min_ticks", i);
+		save();
 		return this;
 	}
 

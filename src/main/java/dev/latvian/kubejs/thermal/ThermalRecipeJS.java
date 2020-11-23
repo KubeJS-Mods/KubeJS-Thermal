@@ -18,4 +18,18 @@ public abstract class ThermalRecipeJS extends RecipeJS
 		o.add("value", in.ingredient.toJson());
 		return o;
 	}
+
+	public ThermalRecipeJS energy(int e)
+	{
+		json.addProperty("energy", e);
+		save();
+		return this;
+	}
+
+	public ThermalRecipeJS energyMod(float e)
+	{
+		json.addProperty("energy_mod", e);
+		save();
+		return this;
+	}
 }

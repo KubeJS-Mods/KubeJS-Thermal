@@ -22,9 +22,7 @@ public class ThermalFuelRecipeJS extends ThermalRecipeJS
 	{
 		inKey = "ingredients";
 
-		json.addProperty("energy", (Number) args.get(0));
-
-		for (Object o : ListJS.orSelf(args.get(1)))
+		for (Object o : ListJS.orSelf(args.get(0)))
 		{
 			if (o instanceof FluidStackJS)
 			{
@@ -35,6 +33,8 @@ public class ThermalFuelRecipeJS extends ThermalRecipeJS
 				inputItems.add(parseIngredientItem(o));
 			}
 		}
+
+		json.addProperty("energy", 100000);
 
 		if (inputItems.isEmpty() && inputFluids.isEmpty())
 		{
@@ -95,18 +95,6 @@ public class ThermalFuelRecipeJS extends ThermalRecipeJS
 				}
 			}
 		}
-	}
-
-	public ThermalFuelRecipeJS energy(int e)
-	{
-		json.addProperty("energy", e);
-		return this;
-	}
-
-	public ThermalFuelRecipeJS energyMod(float e)
-	{
-		json.addProperty("energy_mod", e);
-		return this;
 	}
 
 	@Override

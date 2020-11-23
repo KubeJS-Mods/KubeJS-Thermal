@@ -2,12 +2,9 @@ package dev.latvian.kubejs.thermal;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import dev.latvian.kubejs.fluid.FluidStackJS;
 import dev.latvian.kubejs.item.ingredient.IngredientJS;
-import dev.latvian.kubejs.item.ingredient.IngredientStackJS;
 import dev.latvian.kubejs.recipe.RecipeExceptionJS;
-import dev.latvian.kubejs.recipe.RecipeJS;
 import dev.latvian.kubejs.util.ListJS;
 
 import java.util.ArrayList;
@@ -15,32 +12,19 @@ import java.util.ArrayList;
 /**
  * @author LatvianModder
  */
-public class ThermalFuelRecipeJS extends RecipeJS
+public class ThermalFuelRecipeJS extends ThermalRecipeJS
 {
-	public final int defaultEnergy;
-	public int energy;
 	public ArrayList<FluidStackJS> inputFluids = new ArrayList<>();
 	public String inKey = "";
 
-	public ThermalFuelRecipeJS(int d)
-	{
-		defaultEnergy = d;
-		energy = defaultEnergy;
-	}
-
 	@Override
-	public void create(ListJS listJS)
+	public void create(ListJS args)
 	{
 		inKey = "ingredients";
 
-		if (listJS.size() < 2)
-		{
-			throw new RecipeExceptionJS("Thermal fuel recipes require at least 2 arguments - energy and input!");
-		}
+		json.addProperty("energy", (Number) args.get(0));
 
-		energy = ((Number) listJS.get(0)).intValue();
-
-		for (Object o : ListJS.orSelf(listJS.get(1)))
+		for (Object o : ListJS.orSelf(args.get(1)))
 		{
 			if (o instanceof FluidStackJS)
 			{
@@ -111,23 +95,23 @@ public class ThermalFuelRecipeJS extends RecipeJS
 				}
 			}
 		}
+	}
 
-		if (json.has("energy"))
-		{
-			energy = json.get("energy").getAsInt();
-		}
+	public ThermalFuelRecipeJS energy(int e)
+	{
+		json.addProperty("energy", e);
+		return this;
+	}
 
-		if (json.has("energy_mod"))
-		{
-			energy = (int) ((float) energy * json.get("energy_mod").getAsFloat());
-		}
+	public ThermalFuelRecipeJS energyMod(float e)
+	{
+		json.addProperty("energy_mod", e);
+		return this;
 	}
 
 	@Override
 	public void serialize()
 	{
-		json.addProperty("energy", energy);
-
 		if (serializeInputs)
 		{
 			JsonArray in = new JsonArray();
@@ -144,14 +128,5 @@ public class ThermalFuelRecipeJS extends RecipeJS
 
 			json.add(inKey, in);
 		}
-	}
-
-	@Override
-	public JsonElement serializeIngredientStack(IngredientStackJS in)
-	{
-		JsonObject o = new JsonObject();
-		o.addProperty("count", in.getCount());
-		o.add("value", in.ingredient.toJson());
-		return o;
 	}
 }

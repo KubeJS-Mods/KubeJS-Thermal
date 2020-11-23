@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * @author LatvianModder
  */
-public class ThermalRecipeJS extends RecipeJS
+public class BasicThermalRecipeJS extends RecipeJS
 {
 	public final int defaultEnergy;
 	public int energy;
@@ -27,7 +27,7 @@ public class ThermalRecipeJS extends RecipeJS
 	public String inKey = "";
 	public String outKey = "";
 
-	public ThermalRecipeJS(int d)
+	public BasicThermalRecipeJS(int d)
 	{
 		defaultEnergy = d;
 		energy = defaultEnergy;

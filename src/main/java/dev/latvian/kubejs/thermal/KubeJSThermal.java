@@ -33,18 +33,18 @@ public class KubeJSThermal
 	@SubscribeEvent
 	public static void registerRecipeHandlers(RegisterRecipeHandlersEvent event)
 	{
-		event.register(TExpRecipeTypes.ID_RECIPE_FURNACE.toString(), () -> new ThermalRecipeJS(FurnaceRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_SAWMILL.toString(), () -> new ThermalRecipeJS(SawmillRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_PULVERIZER.toString(), () -> new ThermalRecipeJS(PulverizerRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_SMELTER.toString(), () -> new ThermalRecipeJS(SmelterRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_FURNACE.toString(), () -> new BasicThermalRecipeJS(FurnaceRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_SAWMILL.toString(), () -> new BasicThermalRecipeJS(SawmillRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_PULVERIZER.toString(), () -> new BasicThermalRecipeJS(PulverizerRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_SMELTER.toString(), () -> new BasicThermalRecipeJS(SmelterRecipeManager.instance().getDefaultEnergy()));
 		// TODO: event.register(TExpRecipeTypes.ID_RECIPE_INSOLATOR.toString(), () -> new InsolatorRecipeSerializer(InsolatorRecipeManager.instance().getDefaultEnergy(), InsolatorRecipeManager.instance().getDefaultWater()));
-		event.register(TExpRecipeTypes.ID_RECIPE_CENTRIFUGE.toString(), () -> new ThermalRecipeJS(CentrifugeRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_PRESS.toString(), () -> new ThermalRecipeJS(PressRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_CRUCIBLE.toString(), () -> new ThermalRecipeJS(CrucibleRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_CHILLER.toString(), () -> new ThermalRecipeJS(ChillerRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_REFINERY.toString(), () -> new ThermalRecipeJS(RefineryRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_BREWER.toString(), () -> new ThermalRecipeJS(BrewerRecipeManager.instance().getDefaultEnergy()));
-		event.register(TExpRecipeTypes.ID_RECIPE_BOTTLER.toString(), () -> new ThermalRecipeJS(BottlerRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_CENTRIFUGE.toString(), () -> new BasicThermalRecipeJS(CentrifugeRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_PRESS.toString(), () -> new BasicThermalRecipeJS(PressRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_CRUCIBLE.toString(), () -> new BasicThermalRecipeJS(CrucibleRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_CHILLER.toString(), () -> new BasicThermalRecipeJS(ChillerRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_REFINERY.toString(), () -> new BasicThermalRecipeJS(RefineryRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_BREWER.toString(), () -> new BasicThermalRecipeJS(BrewerRecipeManager.instance().getDefaultEnergy()));
+		event.register(TExpRecipeTypes.ID_RECIPE_BOTTLER.toString(), () -> new BasicThermalRecipeJS(BottlerRecipeManager.instance().getDefaultEnergy()));
 		event.register(TExpRecipeTypes.ID_CATALYST_PULVERIZER.toString(), ThermalCatalystRecipeJS::new);
 		event.register(TExpRecipeTypes.ID_CATALYST_SMELTER.toString(), ThermalCatalystRecipeJS::new);
 		event.register(TExpRecipeTypes.ID_CATALYST_INSOLATOR.toString(), ThermalCatalystRecipeJS::new);

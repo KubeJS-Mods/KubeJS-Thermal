@@ -5,7 +5,7 @@ import dev.latvian.kubejs.util.ListJS;
 /**
  * @author LatvianModder
  */
-public class ThermalCatalystRecipeJS extends ThermalRecipeJS
+public class CatalystRecipeJS extends ThermalRecipeJS
 {
 	@Override
 	public void create(ListJS args)
@@ -18,28 +18,28 @@ public class ThermalCatalystRecipeJS extends ThermalRecipeJS
 		json.addProperty("use_chance", 1F);
 	}
 
-	public ThermalCatalystRecipeJS primaryMod(float f)
+	public CatalystRecipeJS primaryMod(float f)
 	{
 		json.addProperty("primary_mod", f);
 		save();
 		return this;
 	}
 
-	public ThermalCatalystRecipeJS secondaryMod(float f)
+	public CatalystRecipeJS secondaryMod(float f)
 	{
 		json.addProperty("secondary_mod", f);
 		save();
 		return this;
 	}
 
-	public ThermalCatalystRecipeJS minChance(float f)
+	public CatalystRecipeJS minChance(float f)
 	{
 		json.addProperty("min_chance", f);
 		save();
 		return this;
 	}
 
-	public ThermalCatalystRecipeJS useChance(float f)
+	public CatalystRecipeJS useChance(float f)
 	{
 		json.addProperty("use_chance", f);
 		save();

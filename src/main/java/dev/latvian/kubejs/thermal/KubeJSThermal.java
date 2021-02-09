@@ -1,5 +1,7 @@
 package dev.latvian.kubejs.thermal;
 
+import cofh.thermal.core.init.TCoreRecipeTypes;
+import cofh.thermal.expansion.init.TExpRecipeTypes;
 import dev.latvian.kubejs.recipe.RegisterRecipeHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,25 +18,28 @@ public class KubeJSThermal
 	@SubscribeEvent
 	public static void registerRecipeHandlers(RegisterRecipeHandlersEvent event)
 	{
-		event.register("thermal:furnace", BasicThermalRecipeJS::new);
-		event.register("thermal:sawmill", BasicThermalRecipeJS::new);
-		event.register("thermal:pulverizer", BasicThermalRecipeJS::new);
-		event.register("thermal:smelter", BasicThermalRecipeJS::new);
-		event.register("thermal:insolator", ThermalInsolatorRecipeJS::new);
-		event.register("thermal:centrifuge", BasicThermalRecipeJS::new);
-		event.register("thermal:press", BasicThermalRecipeJS::new);
-		event.register("thermal:crucible", BasicThermalRecipeJS::new);
-		event.register("thermal:chiller", BasicThermalRecipeJS::new);
-		event.register("thermal:refinery", BasicThermalRecipeJS::new);
-		event.register("thermal:brewer", BasicThermalRecipeJS::new);
-		event.register("thermal:bottler", BasicThermalRecipeJS::new);
-		event.register("thermal:pulverizer_catalyst", ThermalCatalystRecipeJS::new);
-		event.register("thermal:smelter_catalyst", ThermalCatalystRecipeJS::new);
-		event.register("thermal:insolator_catalyst", ThermalCatalystRecipeJS::new);
-		event.register("thermal:stirling_fuel", ThermalFuelRecipeJS::new);
-		event.register("thermal:compression_fuel", ThermalFuelRecipeJS::new);
-		event.register("thermal:magmatic_fuel", ThermalFuelRecipeJS::new);
-		event.register("thermal:numismatic_fuel", ThermalFuelRecipeJS::new);
-		event.register("thermal:lapidary_fuel", ThermalFuelRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_FURNACE, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_SAWMILL, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_PULVERIZER, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_SMELTER, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_INSOLATOR, InsolatorRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_CENTRIFUGE, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_PRESS, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_CRUCIBLE, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_CHILLER, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_REFINERY, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_PYROLYZER, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_BREWER, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_RECIPE_BOTTLER, BasicThermalRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_CATALYST_PULVERIZER, CatalystRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_CATALYST_SMELTER, CatalystRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_CATALYST_INSOLATOR, CatalystRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_FUEL_STIRLING, FuelRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_FUEL_COMPRESSION, FuelRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_FUEL_MAGMATIC, FuelRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_FUEL_NUMISMATIC, FuelRecipeJS::new);
+		event.register(TExpRecipeTypes.ID_FUEL_LAPIDARY, FuelRecipeJS::new);
+		event.register(TCoreRecipeTypes.ID_BOOST_TREE_EXTRACTOR, TreeExtractorBoostRecipeJS::new);
+		event.register(TCoreRecipeTypes.ID_MAPPING_TREE_EXTRACTOR, TreeExtractorMappingRecipeJS::new);
 	}
 }

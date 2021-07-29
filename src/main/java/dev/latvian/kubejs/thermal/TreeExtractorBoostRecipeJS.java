@@ -5,39 +5,32 @@ import dev.latvian.kubejs.util.ListJS;
 /**
  * @author LatvianModder
  */
-public class TreeExtractorBoostRecipeJS extends ThermalRecipeJS
-{
+public class TreeExtractorBoostRecipeJS extends ThermalRecipeJS {
 	@Override
-	public void create(ListJS args)
-	{
+	public void create(ListJS args) {
 		inputItems.add(parseIngredientItem(args.get(0)));
 	}
 
-	public TreeExtractorBoostRecipeJS boostMod(float f)
-	{
+	public TreeExtractorBoostRecipeJS boostMod(float f) {
 		json.addProperty("boost_mod", f);
 		save();
 		return this;
 	}
 
-	public TreeExtractorBoostRecipeJS cycles(int c)
-	{
+	public TreeExtractorBoostRecipeJS cycles(int c) {
 		json.addProperty("cycles", c);
 		save();
 		return this;
 	}
 
 	@Override
-	public void deserialize()
-	{
+	public void deserialize() {
 		inputItems.add(parseIngredientItem(json.get("ingredient")));
 	}
 
 	@Override
-	public void serialize()
-	{
-		if (serializeInputs)
-		{
+	public void serialize() {
+		if (serializeInputs) {
 			json.add("ingredient", inputItems.get(0).toJson());
 		}
 	}

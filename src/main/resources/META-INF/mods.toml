@@ -5,7 +5,7 @@ license = "GNU LGPLv3"
 
 [[mods]]
 modId = "kubejs_thermal"
-version = "${file.jarVersion}"
+version = "${version}"
 displayName = "KubeJS Thermal"
 authors = "LatvianModder"
 description = '''
@@ -16,13 +16,13 @@ license = "GNU LGPLv3"
 [[dependencies.kubejs_thermal]]
 modId = "kubejs"
 mandatory = true
-versionRange = "[1604,)"
+versionRange = "[1605.3.13-build.45,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.kubejs_thermal]]
 modId = "thermal_expansion"
 mandatory = true
-versionRange = "[1,)"
+versionRange = "[1.3.0,)"
 ordering = "AFTER"
 side = "BOTH"

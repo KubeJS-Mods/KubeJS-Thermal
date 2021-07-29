@@ -1,1 +1,9 @@
+pluginManagement {
+	repositories {
+		maven { url "https://maven.creeperhost.net/" }
+		maven { url "https://maven.shedaniel.me/" }
+		gradlePluginPortal()
+	}
+}
+
 rootProject.name = 'KubeJS-Thermal-1.16.5'

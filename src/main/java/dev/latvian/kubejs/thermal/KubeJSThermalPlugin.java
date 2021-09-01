@@ -31,7 +31,10 @@ public class KubeJSThermalPlugin extends KubeJSPlugin {
 		event.register(TCoreRecipeTypes.ID_FUEL_MAGMATIC, FuelRecipeJS::new);
 		event.register(TCoreRecipeTypes.ID_FUEL_NUMISMATIC, FuelRecipeJS::new);
 		event.register(TCoreRecipeTypes.ID_FUEL_LAPIDARY, FuelRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_BOOST_TREE_EXTRACTOR, TreeExtractorBoostRecipeJS::new);
 		event.register(TCoreRecipeTypes.ID_MAPPING_TREE_EXTRACTOR, TreeExtractorMappingRecipeJS::new);
+		event.register(TCoreRecipeTypes.ID_BOOST_TREE_EXTRACTOR, TreeExtractorBoostRecipeJS::new);
+		event.register(TCoreRecipeTypes.ID_BOOST_FISHER, FisherBoostRecipeJS::new);
+		event.register(TCoreRecipeTypes.ID_MAPPING_ROCK_GEN, RockGenMappingRecipeJS::new);
+		event.register(TCoreRecipeTypes.ID_BOOST_POTION_DIFFUSER, PotionDiffuserBoostRecipeJS::new);
 	}
 }

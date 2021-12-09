@@ -1,7 +1,9 @@
 package dev.latvian.kubejs.thermal;
 
+import cofh.lib.fluid.FluidIngredient;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.latvian.kubejs.fluid.FluidStackJS;
 import dev.latvian.kubejs.item.ingredient.IngredientStackJS;
 import dev.latvian.kubejs.recipe.RecipeJS;
 
@@ -27,5 +29,9 @@ public abstract class ThermalRecipeJS extends RecipeJS {
 		json.addProperty("energy_mod", e);
 		save();
 		return this;
+	}
+
+	public FluidIngredient fluidFrom(FluidStackJS fs) {
+		return FluidIngredient.fromJson(fs.toJson());
 	}
 }

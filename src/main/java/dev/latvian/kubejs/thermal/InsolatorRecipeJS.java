@@ -1,5 +1,6 @@
 package dev.latvian.kubejs.thermal;
 
+import cofh.lib.fluid.FluidIngredient;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import dev.latvian.kubejs.fluid.FluidStackJS;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * @author LatvianModder
  */
 public class InsolatorRecipeJS extends ThermalRecipeJS {
-	public ArrayList<FluidStackJS> inputFluids = new ArrayList<>();
+	public ArrayList<FluidIngredient> inputFluids = new ArrayList<>();
 	public ArrayList<FluidStackJS> outputFluids = new ArrayList<>();
 	public String inKey = "";
 	public String outKey = "";
@@ -34,7 +35,7 @@ public class InsolatorRecipeJS extends ThermalRecipeJS {
 
 		for (Object o : ListJS.orSelf(args.get(1))) {
 			if (o instanceof FluidStackJS) {
-				inputFluids.add((FluidStackJS) o);
+				inputFluids.add(fluidFrom((FluidStackJS) o));
 			} else {
 				inputItems.add(parseIngredientItem(o));
 			}
@@ -97,8 +98,8 @@ public class InsolatorRecipeJS extends ThermalRecipeJS {
 				}
 
 				for (JsonElement e : array) {
-					if (e.isJsonObject() && e.getAsJsonObject().has("fluid")) {
-						inputFluids.add(FluidStackJS.fromJson(e.getAsJsonObject()));
+					if (e.isJsonObject() && (e.getAsJsonObject().has("fluid") || e.getAsJsonObject().has("fluid_tag"))) {
+						inputFluids.add(FluidIngredient.fromJson(e));
 					} else {
 						inputItems.add(parseIngredientItem(e));
 					}
@@ -165,7 +166,7 @@ public class InsolatorRecipeJS extends ThermalRecipeJS {
 				in.add(ingredient.toJson());
 			}
 
-			for (FluidStackJS fluid : inputFluids) {
+			for (FluidIngredient fluid : inputFluids) {
 				in.add(fluid.toJson());
 			}
 

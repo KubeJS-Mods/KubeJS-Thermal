@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import dev.latvian.kubejs.fluid.FluidStackJS;
 import dev.latvian.kubejs.item.ingredient.IngredientStackJS;
 import dev.latvian.kubejs.recipe.RecipeJS;
+import net.minecraftforge.fluids.FluidStack;
 
 /**
  * @author LatvianModder
@@ -32,6 +33,6 @@ public abstract class ThermalRecipeJS extends RecipeJS {
 	}
 
 	public FluidIngredient fluidFrom(FluidStackJS fs) {
-		return FluidIngredient.fromJson(fs.toJson());
+		return FluidIngredient.of(new FluidStack(fs.getFluid(), fs.getAmount(), fs.getNbt()));
 	}
 }

@@ -1,8 +1,8 @@
 package dev.latvian.kubejs.thermal;
 
-import dev.latvian.kubejs.fluid.EmptyFluidStackJS;
-import dev.latvian.kubejs.fluid.FluidStackJS;
-import dev.latvian.kubejs.util.ListJS;
+import dev.latvian.mods.kubejs.fluid.EmptyFluidStackJS;
+import dev.latvian.mods.kubejs.fluid.FluidStackJS;
+import dev.latvian.mods.kubejs.util.ListJS;
 import net.minecraft.resources.ResourceLocation;
 
 /**

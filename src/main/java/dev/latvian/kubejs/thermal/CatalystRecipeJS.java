@@ -1,6 +1,7 @@
 package dev.latvian.kubejs.thermal;
 
-import dev.latvian.kubejs.util.ListJS;
+
+import dev.latvian.mods.kubejs.util.ListJS;
 
 /**
  * @author LatvianModder

@@ -2,10 +2,10 @@ package dev.latvian.kubejs.thermal;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import dev.latvian.kubejs.fluid.FluidStackJS;
-import dev.latvian.kubejs.item.ingredient.IngredientJS;
-import dev.latvian.kubejs.recipe.RecipeExceptionJS;
-import dev.latvian.kubejs.util.ListJS;
+import dev.latvian.mods.kubejs.fluid.FluidStackJS;
+import dev.latvian.mods.kubejs.item.ingredient.IngredientJS;
+import dev.latvian.mods.kubejs.recipe.RecipeExceptionJS;
+import dev.latvian.mods.kubejs.util.ListJS;
 
 import java.util.ArrayList;
 

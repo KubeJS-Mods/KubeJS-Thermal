@@ -16,7 +16,7 @@ license = "GNU LGPLv3"
 [[dependencies.kubejs_thermal]]
 modId = "kubejs"
 mandatory = true
-versionRange = "[1605.3.13-build.45,)"
+versionRange = "[1802.5.2-build.415,)"
 ordering = "AFTER"
 side = "BOTH"
 

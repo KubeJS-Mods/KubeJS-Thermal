@@ -54,10 +54,6 @@ repositories {
 			includeGroup "dev.ftb.mods"
 		}
 	}
-
-	flatDir {
-		dirs 'libs'
-	}
 }
 
 dependencies {
@@ -71,14 +67,12 @@ dependencies {
 	modImplementation("dev.architectury:architectury-forge:${project.architectury_version}")
 	modImplementation("dev.latvian.mods:kubejs-forge:${rootProject.kubejs_version}")
 
-	modImplementation fileTree(dir: "./libs", includes: ['*.jar'])
-
-//	modImplementation("curse.maven:cofh-core-69162:${cofh_core_file}")
-//	modImplementation("curse.maven:thermal-foundation-222880:${thermal_foundation_file}")
-//	modImplementation("curse.maven:thermal-expansion-69163:${thermal_expansion_file}")
-//	modImplementation("curse.maven:thermal-cultivation-271835:${thermal_cultivation_file}")
-//	modImplementation("curse.maven:thermal-locomotion-406959:${thermal_locomotion_file}")
-//	modImplementation("curse.maven:thermal-innovation-291737:${thermal_innovation_file}")
+	modImplementation("curse.maven:cofh-core-69162:${cofh_core_file}")
+	modImplementation("curse.maven:thermal-foundation-222880:${thermal_foundation_file}")
+	modImplementation("curse.maven:thermal-expansion-69163:${thermal_expansion_file}")
+	modImplementation("curse.maven:thermal-cultivation-271835:${thermal_cultivation_file}")
+	modImplementation("curse.maven:thermal-locomotion-406959:${thermal_locomotion_file}")
+	modImplementation("curse.maven:thermal-innovation-291737:${thermal_innovation_file}")
 }
 
 processResources {

@@ -1,20 +1,20 @@
-package dev.latvian.kubejs.thermal;
+package dev.latvian.mods.kubejs.thermal;
 
 import cofh.lib.fluid.FluidIngredient;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import dev.latvian.kubejs.fluid.FluidStackJS;
-import dev.latvian.kubejs.item.ItemStackJS;
-import dev.latvian.kubejs.item.ingredient.IngredientJS;
-import dev.latvian.kubejs.recipe.RecipeExceptionJS;
-import dev.latvian.kubejs.util.ListJS;
+import dev.latvian.mods.kubejs.fluid.FluidStackJS;
+import dev.latvian.mods.kubejs.item.ItemStackJS;
+import dev.latvian.mods.kubejs.item.ingredient.IngredientJS;
+import dev.latvian.mods.kubejs.recipe.RecipeExceptionJS;
+import dev.latvian.mods.kubejs.util.ListJS;
 
 import java.util.ArrayList;
 
 /**
  * @author LatvianModder
  */
-public class BasicThermalRecipeJS extends ThermalRecipeJS {
+public class InsolatorRecipeJS extends ThermalRecipeJS {
 	public ArrayList<FluidIngredient> inputFluids = new ArrayList<>();
 	public ArrayList<FluidStackJS> outputFluids = new ArrayList<>();
 	public String inKey = "";
@@ -48,19 +48,25 @@ public class BasicThermalRecipeJS extends ThermalRecipeJS {
 		if (inputItems.isEmpty() && inputFluids.isEmpty()) {
 			throw new RecipeExceptionJS("Thermal recipe can't have no ingredients!");
 		}
-
-		json.addProperty("energy", 4000);
 	}
 
-	public BasicThermalRecipeJS experience(float e) {
+	public InsolatorRecipeJS experience(float e) {
 		json.addProperty("experience", e);
-		save();
 		return this;
 	}
 
-	public BasicThermalRecipeJS minTicks(int i) {
+	public InsolatorRecipeJS minTicks(int i) {
 		json.addProperty("min_ticks", i);
-		save();
+		return this;
+	}
+
+	public InsolatorRecipeJS water(int e) {
+		json.addProperty("water", e);
+		return this;
+	}
+
+	public InsolatorRecipeJS waterMod(float e) {
+		json.addProperty("water_mod", e);
 		return this;
 	}
 

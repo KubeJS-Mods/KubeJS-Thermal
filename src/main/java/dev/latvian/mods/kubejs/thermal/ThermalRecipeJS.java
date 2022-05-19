@@ -1,11 +1,11 @@
-package dev.latvian.kubejs.thermal;
+package dev.latvian.mods.kubejs.thermal;
 
 import cofh.lib.fluid.FluidIngredient;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import dev.latvian.kubejs.fluid.FluidStackJS;
-import dev.latvian.kubejs.item.ingredient.IngredientStackJS;
-import dev.latvian.kubejs.recipe.RecipeJS;
+import dev.latvian.mods.kubejs.fluid.FluidStackJS;
+import dev.latvian.mods.kubejs.item.ingredient.IngredientStackJS;
+import dev.latvian.mods.kubejs.recipe.RecipeJS;
 import net.minecraftforge.fluids.FluidStack;
 
 /**
@@ -33,6 +33,6 @@ public abstract class ThermalRecipeJS extends RecipeJS {
 	}
 
 	public FluidIngredient fluidFrom(FluidStackJS fs) {
-		return FluidIngredient.of(new FluidStack(fs.getFluid(), fs.getAmount(), fs.getNbt()));
+		return FluidIngredient.of(new FluidStack(fs.getFluid(), (int) fs.getAmount(), fs.getNbt()));
 	}
 }

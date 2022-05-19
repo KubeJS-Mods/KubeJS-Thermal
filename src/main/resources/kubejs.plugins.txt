@@ -1,1 +1,1 @@
-dev.latvian.kubejs.thermal.KubeJSThermalPlugin
+dev.latvian.mods.kubejs.thermal.KubeJSThermalPlugin

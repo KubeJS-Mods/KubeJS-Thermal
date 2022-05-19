@@ -1,4 +1,4 @@
-package dev.latvian.kubejs.thermal;
+package dev.latvian.mods.kubejs.thermal;
 
 import cofh.thermal.core.init.TCoreRecipeTypes;
 import dev.latvian.mods.kubejs.KubeJSPlugin;

@@ -1,4 +1,4 @@
-package dev.latvian.kubejs.thermal;
+package dev.latvian.mods.kubejs.thermal;
 
 import cofh.lib.fluid.FluidIngredient;
 import com.google.gson.JsonElement;

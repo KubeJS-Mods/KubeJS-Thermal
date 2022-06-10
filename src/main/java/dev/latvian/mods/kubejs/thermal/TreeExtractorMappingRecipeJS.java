@@ -15,7 +15,7 @@ public class TreeExtractorMappingRecipeJS extends ThermalRecipeJS {
 	public void create(ListJS args) {
 		outputFluid = FluidStackJS.of(args.get(0));
 		json.addProperty("trunk", args.get(1).toString());
-		json.addProperty("leaf", args.get(1).toString());
+		json.addProperty("leaf", args.get(2).toString());
 	}
 
 	public TreeExtractorMappingRecipeJS trunk(ResourceLocation id) {

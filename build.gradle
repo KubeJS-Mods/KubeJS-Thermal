@@ -54,6 +54,13 @@ repositories {
 			includeGroup "dev.ftb.mods"
 		}
 	}
+
+	maven {
+		url "https://maven.creeperhost.net/"
+		content {
+			includeGroup "com.teamcofh"
+		}
+	}
 }
 
 dependencies {
@@ -64,15 +71,14 @@ dependencies {
 
 	modImplementation("curse.maven:jei-238222:${jei_file}")
 
-	modImplementation("dev.architectury:architectury-forge:${project.architectury_version}")
 	modImplementation("dev.latvian.mods:kubejs-forge:${rootProject.kubejs_version}")
 
-	modImplementation("curse.maven:cofh-core-69162:${cofh_core_file}")
-	modImplementation("curse.maven:thermal-foundation-222880:${thermal_foundation_file}")
-	modImplementation("curse.maven:thermal-expansion-69163:${thermal_expansion_file}")
-	modImplementation("curse.maven:thermal-cultivation-271835:${thermal_cultivation_file}")
-	modImplementation("curse.maven:thermal-locomotion-406959:${thermal_locomotion_file}")
-	modImplementation("curse.maven:thermal-innovation-291737:${thermal_innovation_file}")
+	modImplementation("com.teamcofh:cofh_core:1.18.2-9.1.2.32")
+	modImplementation("com.teamcofh:thermal_foundation:1.18.2-9.1.+")
+	modImplementation("com.teamcofh:thermal_expansion:1.18.2-9.1.+")
+	modImplementation("com.teamcofh:thermal_cultivation:1.18.2-9.1.+")
+	modImplementation("com.teamcofh:thermal_locomotion:1.18.2-9.1.+")
+	modImplementation("com.teamcofh:thermal_innovation:1.18.2-9.1.+")
 }
 
 processResources {

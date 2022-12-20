@@ -23,6 +23,7 @@ public class KubeJSThermalPlugin extends KubeJSPlugin {
 		event.register(TCoreRecipeTypes.ID_RECIPE_PYROLYZER, BasicThermalRecipeJS::new);
 		event.register(TCoreRecipeTypes.ID_RECIPE_BREWER, BasicThermalRecipeJS::new);
 		event.register(TCoreRecipeTypes.ID_RECIPE_BOTTLER, BasicThermalRecipeJS::new);
+		event.register(TCoreRecipeTypes.ID_RECIPE_CRYSTALLIZER, BasicThermalRecipeJS::new);
 		event.register(TCoreRecipeTypes.ID_CATALYST_PULVERIZER, CatalystRecipeJS::new);
 		event.register(TCoreRecipeTypes.ID_CATALYST_SMELTER, CatalystRecipeJS::new);
 		event.register(TCoreRecipeTypes.ID_CATALYST_INSOLATOR, CatalystRecipeJS::new);

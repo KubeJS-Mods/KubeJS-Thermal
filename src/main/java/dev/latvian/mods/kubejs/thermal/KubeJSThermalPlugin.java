@@ -1,41 +1,64 @@
 package dev.latvian.mods.kubejs.thermal;
 
+
 import cofh.thermal.core.init.TCoreRecipeTypes;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
-import dev.latvian.mods.kubejs.recipe.RegisterRecipeHandlersEvent;
+import dev.latvian.mods.kubejs.recipe.RegisterRecipeTypesEvent;
+
+import java.util.List;
 
 /**
  * @author LatvianModder
  */
 public class KubeJSThermalPlugin extends KubeJSPlugin {
 	@Override
-	public void addRecipes(RegisterRecipeHandlersEvent event) {
-		event.register(TCoreRecipeTypes.ID_RECIPE_FURNACE, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_SAWMILL, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_PULVERIZER, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_SMELTER, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_INSOLATOR, InsolatorRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_CENTRIFUGE, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_PRESS, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_CRUCIBLE, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_CHILLER, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_REFINERY, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_PYROLYZER, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_BREWER, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_BOTTLER, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_RECIPE_CRYSTALLIZER, BasicThermalRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_CATALYST_PULVERIZER, CatalystRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_CATALYST_SMELTER, CatalystRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_CATALYST_INSOLATOR, CatalystRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_FUEL_STIRLING, FuelRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_FUEL_COMPRESSION, FuelRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_FUEL_MAGMATIC, FuelRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_FUEL_NUMISMATIC, FuelRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_FUEL_LAPIDARY, FuelRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_MAPPING_TREE_EXTRACTOR, TreeExtractorMappingRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_BOOST_TREE_EXTRACTOR, TreeExtractorBoostRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_BOOST_FISHER, FisherBoostRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_MAPPING_ROCK_GEN, RockGenMappingRecipeJS::new);
-		event.register(TCoreRecipeTypes.ID_BOOST_POTION_DIFFUSER, PotionDiffuserBoostRecipeJS::new);
+	public void registerRecipeTypes(RegisterRecipeTypesEvent event) {
+		for (var type : List.of(
+				TCoreRecipeTypes.FURNACE_RECIPE,
+				TCoreRecipeTypes.SAWMILL_RECIPE,
+				TCoreRecipeTypes.PULVERIZER_RECIPE,
+				TCoreRecipeTypes.SMELTER_RECIPE,
+				TCoreRecipeTypes.CENTRIFUGE_RECIPE,
+				TCoreRecipeTypes.PRESS_RECIPE,
+				TCoreRecipeTypes.CRUCIBLE_RECIPE,
+				TCoreRecipeTypes.CHILLER_RECIPE,
+				TCoreRecipeTypes.REFINERY_RECIPE,
+				TCoreRecipeTypes.PYROLYZER_RECIPE,
+				TCoreRecipeTypes.BREWER_RECIPE,
+				TCoreRecipeTypes.BOTTLER_RECIPE,
+				TCoreRecipeTypes.CRYSTALLIZER_RECIPE
+		)) {
+			event.register(type.getId(), BasicThermalRecipeJS::new);
+		}
+
+		event.register(TCoreRecipeTypes.INSOLATOR_RECIPE.getId(), InsolatorRecipeJS::new);
+
+		for (var type : List.of(
+				TCoreRecipeTypes.PULVERIZER_CATALYST,
+				TCoreRecipeTypes.SMELTER_CATALYST,
+				TCoreRecipeTypes.INSOLATOR_CATALYST
+
+		)) {
+			event.register(type.getId(), CatalystRecipeJS::new);
+		}
+
+		for (var type : List.of(
+				TCoreRecipeTypes.STIRLING_FUEL,
+				TCoreRecipeTypes.COMPRESSION_FUEL,
+				TCoreRecipeTypes.MAGMATIC_FUEL,
+				TCoreRecipeTypes.NUMISMATIC_FUEL,
+				TCoreRecipeTypes.LAPIDARY_FUEL,
+				TCoreRecipeTypes.DISENCHANTMENT_FUEL,
+				TCoreRecipeTypes.GOURMAND_FUEL
+		)) {
+			event.register(type.getId(), FuelRecipeJS::new);
+		}
+
+		// TCoreRecipeTypes.HIVE_EXTRACTOR_MAPPING.getId()
+		event.register(TCoreRecipeTypes.TREE_EXTRACTOR_MAPPING.getId(), TreeExtractorMappingRecipeJS::new);
+		event.register(TCoreRecipeTypes.TREE_EXTRACTOR_BOOST.getId(), TreeExtractorBoostRecipeJS::new);
+		event.register(TCoreRecipeTypes.FISHER_BOOST.getId(), FisherBoostRecipeJS::new);
+		event.register(TCoreRecipeTypes.ROCK_GEN_MAPPING.getId(), RockGenMappingRecipeJS::new);
+		event.register(TCoreRecipeTypes.POTION_DIFFUSER_BOOST.getId(), PotionDiffuserBoostRecipeJS::new);
 	}
 }

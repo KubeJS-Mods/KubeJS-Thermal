@@ -1,14 +1,14 @@
 package dev.latvian.mods.kubejs.thermal;
 
 
-import dev.latvian.mods.kubejs.util.ListJS;
+import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 
 /**
  * @author LatvianModder
  */
 public class CatalystRecipeJS extends ThermalRecipeJS {
 	@Override
-	public void create(ListJS args) {
+	public void create(RecipeArguments args) {
 		inputItems.add(parseIngredientItem(args.get(0)));
 		json.addProperty("primary_mod", 1F);
 		json.addProperty("secondary_mod", 1F);

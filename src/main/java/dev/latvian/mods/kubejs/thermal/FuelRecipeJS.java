@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.item.ingredient.IngredientJS;
+import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 import dev.latvian.mods.kubejs.recipe.RecipeExceptionJS;
 import dev.latvian.mods.kubejs.util.ListJS;
 
@@ -13,12 +14,12 @@ import java.util.ArrayList;
 /**
  * @author LatvianModder
  */
-public class FuelRecipeJS extends ThermalRecipeJS {
+public class FuelRecipeJS extends ThermalRecipeJS { // ThermalFuel
 	public ArrayList<FluidIngredient> inputFluids = new ArrayList<>();
 	public String inKey = "";
 
 	@Override
-	public void create(ListJS args) {
+	public void create(RecipeArguments args) {
 		inKey = "ingredients";
 
 		for (Object o : ListJS.orSelf(args.get(0))) {

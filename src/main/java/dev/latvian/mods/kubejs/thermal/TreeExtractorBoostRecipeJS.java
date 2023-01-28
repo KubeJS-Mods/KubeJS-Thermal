@@ -1,13 +1,13 @@
 package dev.latvian.mods.kubejs.thermal;
 
-import dev.latvian.mods.kubejs.util.ListJS;
+import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 
 /**
  * @author LatvianModder
  */
 public class TreeExtractorBoostRecipeJS extends ThermalRecipeJS {
 	@Override
-	public void create(ListJS args) {
+	public void create(RecipeArguments args) {
 		inputItems.add(parseIngredientItem(args.get(0)));
 	}
 

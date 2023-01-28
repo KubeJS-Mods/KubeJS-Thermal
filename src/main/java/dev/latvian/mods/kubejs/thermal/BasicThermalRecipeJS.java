@@ -1,29 +1,38 @@
 package dev.latvian.mods.kubejs.thermal;
 
 import cofh.lib.fluid.FluidIngredient;
+import cofh.lib.util.recipes.RecipeJsonUtils;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import dev.latvian.mods.kubejs.fluid.FluidStackJS;
-import dev.latvian.mods.kubejs.item.ItemStackJS;
-import dev.latvian.mods.kubejs.item.ingredient.IngredientJS;
-import dev.latvian.mods.kubejs.recipe.RecipeExceptionJS;
-import dev.latvian.mods.kubejs.util.ListJS;
+import dev.latvian.mods.kubejs.recipe.IngredientMatch;
+import dev.latvian.mods.kubejs.recipe.ItemInputTransformer;
+import dev.latvian.mods.kubejs.recipe.ItemOutputTransformer;
+import dev.latvian.mods.kubejs.recipe.RecipeArguments;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author LatvianModder
  */
 public class BasicThermalRecipeJS extends ThermalRecipeJS {
-	public ArrayList<FluidIngredient> inputFluids = new ArrayList<>();
-	public ArrayList<FluidStackJS> outputFluids = new ArrayList<>();
+	public final List<Ingredient> inputItems = new ArrayList<>(1);
+	public final List<FluidIngredient> inputFluids = new ArrayList<>(0);
+	public final List<ItemStack> outputItems = new ArrayList<>(1);
+	public final List<Float> outputItemChances = new ArrayList<>(1);
+	public final List<FluidStack> outputFluids = new ArrayList<>(0);
+
 	public String inKey = "";
 	public String outKey = "";
 
 	@Override
-	public void create(ListJS args) {
+	public void create(RecipeArguments args) {
 		inKey = "ingredients";
 		outKey = "results";
+
+		/*
 
 		for (Object o : ListJS.orSelf(args.get(0))) {
 			if (o instanceof FluidStackJS) {
@@ -48,6 +57,7 @@ public class BasicThermalRecipeJS extends ThermalRecipeJS {
 		if (inputItems.isEmpty() && inputFluids.isEmpty()) {
 			throw new RecipeExceptionJS("Thermal recipe can't have no ingredients!");
 		}
+		 */
 
 		json.addProperty("energy", 4000);
 	}
@@ -67,104 +77,119 @@ public class BasicThermalRecipeJS extends ThermalRecipeJS {
 	@Override
 	public void deserialize() {
 		inKey = "";
-
-		if (json.has("ingredient")) {
-			inKey = "ingredient";
-		} else if (json.has("ingredients")) {
-			inKey = "ingredients";
-		} else if (json.has("input")) {
-			inKey = "input";
-		} else if (json.has("inputs")) {
-			inKey = "inputs";
-		}
-
-		if (!inKey.isEmpty()) {
-			JsonElement element = json.get(inKey);
-
-			if (element != null) {
-				JsonArray array;
-
-				if (element.isJsonArray()) {
-					array = element.getAsJsonArray();
-				} else {
-					array = new JsonArray();
-					array.add(element);
-				}
-
-				for (JsonElement e : array) {
-					if (e.isJsonObject() && (e.getAsJsonObject().has("fluid") || e.getAsJsonObject().has("fluid_tag"))) {
-						inputFluids.add(FluidIngredient.fromJson(e));
-					} else {
-						inputItems.add(parseIngredientItem(e));
-					}
-				}
-			}
-		}
-
 		outKey = "";
 
-		if (json.has("result")) {
-			outKey = "result";
-		} else if (json.has("results")) {
-			outKey = "results";
-		} else if (json.has("output")) {
-			outKey = "output";
-		} else if (json.has("outputs")) {
-			outKey = "outputs";
+		if (json.has(RecipeJsonUtils.INGREDIENT)) {
+			inKey = RecipeJsonUtils.INGREDIENT;
+			RecipeJsonUtils.parseInputs(inputItems, inputFluids, json.get(RecipeJsonUtils.INGREDIENT));
+		} else if (json.has(RecipeJsonUtils.INGREDIENTS)) {
+			inKey = RecipeJsonUtils.INGREDIENTS;
+			RecipeJsonUtils.parseInputs(inputItems, inputFluids, json.get(RecipeJsonUtils.INGREDIENTS));
+		} else if (json.has(RecipeJsonUtils.INPUT)) {
+			inKey = RecipeJsonUtils.INPUT;
+			RecipeJsonUtils.parseInputs(inputItems, inputFluids, json.get(RecipeJsonUtils.INPUT));
+		} else if (json.has(RecipeJsonUtils.INPUTS)) {
+			inKey = RecipeJsonUtils.INPUTS;
+			RecipeJsonUtils.parseInputs(inputItems, inputFluids, json.get(RecipeJsonUtils.INPUTS));
 		}
 
-		if (!outKey.isEmpty()) {
-			JsonElement element = json.get(outKey);
-
-			if (element != null) {
-				JsonArray array;
-
-				if (element.isJsonArray()) {
-					array = element.getAsJsonArray();
-				} else {
-					array = new JsonArray();
-					array.add(element);
-				}
-
-				for (JsonElement e : array) {
-					if (e.getAsJsonObject().has("fluid")) {
-						outputFluids.add(FluidStackJS.fromJson(e.getAsJsonObject()));
-					} else {
-						outputItems.add(parseResultItem(e));
-					}
-				}
-			}
+		if (json.has(RecipeJsonUtils.RESULT)) {
+			outKey = RecipeJsonUtils.RESULT;
+			RecipeJsonUtils.parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RecipeJsonUtils.RESULT));
+		} else if (json.has(RecipeJsonUtils.RESULTS)) {
+			outKey = RecipeJsonUtils.RESULTS;
+			RecipeJsonUtils.parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RecipeJsonUtils.RESULTS));
+		} else if (json.has(RecipeJsonUtils.OUTPUT)) {
+			outKey = RecipeJsonUtils.OUTPUT;
+			RecipeJsonUtils.parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RecipeJsonUtils.OUTPUT));
+		} else if (json.has(RecipeJsonUtils.OUTPUTS)) {
+			outKey = RecipeJsonUtils.OUTPUTS;
+			RecipeJsonUtils.parseOutputs(outputItems, outputItemChances, outputFluids, json.get(RecipeJsonUtils.OUTPUTS));
 		}
 	}
 
 	@Override
 	public void serialize() {
-		if (serializeOutputs) {
+		if (serializeOutputs && !outKey.isEmpty()) {
 			JsonArray out = new JsonArray();
 
-			for (ItemStackJS stack : outputItems) {
-				out.add(stack.toResultJson());
+			for (var stack : outputItems) {
+				out.add(itemToJson(stack));
 			}
 
-			for (FluidStackJS fluid : outputFluids) {
-				out.add(fluid.toJson());
+			for (var fluid : outputFluids) {
+				out.add(fluidToJson(fluid));
 			}
 
 			json.add(outKey, out);
 		}
 
-		if (serializeInputs) {
+		if (serializeInputs && !inKey.isEmpty()) {
 			JsonArray in = new JsonArray();
 
-			for (IngredientJS ingredient : inputItems) {
+			for (var ingredient : inputItems) {
 				in.add(ingredient.toJson());
 			}
 
-			for (FluidIngredient fluid : inputFluids) {
+			for (var fluid : inputFluids) {
 				in.add(fluid.toJson());
 			}
 
 			json.add(inKey, in);
 		}
+	}
+
+	@Override
+	public boolean hasInput(IngredientMatch match) {
+		for (var in : inputItems) {
+			if (match.contains(in)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean replaceInput(IngredientMatch match, Ingredient with, ItemInputTransformer transformer) {
+		boolean changed = false;
+
+		for (int i = 0; i < inputItems.size(); ++i) {
+			var in = inputItems.get(i);
+
+			if (match.contains(in)) {
+				inputItems.set(i, transformer.transform(this, match, in, with));
+				changed = true;
+			}
+		}
+
+		return changed;
+	}
+
+	@Override
+	public boolean hasOutput(IngredientMatch match) {
+		for (var out : outputItems) {
+			if (match.contains(out)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean replaceOutput(IngredientMatch match, ItemStack with, ItemOutputTransformer transformer) {
+		boolean changed = false;
+
+		for (int i = 0; i < outputItems.size(); ++i) {
+			var out = outputItems.get(i);
+
+			if (match.contains(out)) {
+				outputItems.set(i, transformer.transform(this, match, out, with));
+				changed = true;
+			}
+		}
+
+		return changed;
 	}
 }

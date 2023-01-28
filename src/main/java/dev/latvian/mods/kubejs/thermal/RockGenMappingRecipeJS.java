@@ -1,13 +1,13 @@
 package dev.latvian.mods.kubejs.thermal;
 
-import dev.latvian.mods.kubejs.util.ListJS;
+import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 
 /**
  * @author LatvianModder
  */
 public class RockGenMappingRecipeJS extends ThermalRecipeJS {
 	@Override
-	public void create(ListJS args) {
+	public void create(RecipeArguments args) {
 		outputItems.add(parseResultItem(args.get(0)));
 	}
 

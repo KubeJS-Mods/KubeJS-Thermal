@@ -2,7 +2,7 @@ package dev.latvian.mods.kubejs.thermal;
 
 import dev.latvian.mods.kubejs.fluid.EmptyFluidStackJS;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
-import dev.latvian.mods.kubejs.util.ListJS;
+import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -12,7 +12,7 @@ public class TreeExtractorMappingRecipeJS extends ThermalRecipeJS {
 	public FluidStackJS outputFluid = EmptyFluidStackJS.INSTANCE;
 
 	@Override
-	public void create(ListJS args) {
+	public void create(RecipeArguments args) {
 		outputFluid = FluidStackJS.of(args.get(0));
 		json.addProperty("trunk", args.get(1).toString());
 		json.addProperty("leaf", args.get(2).toString());

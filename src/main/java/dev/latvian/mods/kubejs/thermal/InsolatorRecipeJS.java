@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.item.ItemStackJS;
 import dev.latvian.mods.kubejs.item.ingredient.IngredientJS;
+import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 import dev.latvian.mods.kubejs.recipe.RecipeExceptionJS;
 import dev.latvian.mods.kubejs.util.ListJS;
 
@@ -21,7 +22,7 @@ public class InsolatorRecipeJS extends ThermalRecipeJS {
 	public String outKey = "";
 
 	@Override
-	public void create(ListJS args) {
+	public void create(RecipeArguments args) {
 		inKey = "ingredients";
 		outKey = "results";
 
@@ -50,8 +51,8 @@ public class InsolatorRecipeJS extends ThermalRecipeJS {
 		}
 	}
 
-	public InsolatorRecipeJS experience(float e) {
-		json.addProperty("experience", e);
+	public InsolatorRecipeJS xp(float e) {
+		json.addProperty("xp", e);
 		return this;
 	}
 

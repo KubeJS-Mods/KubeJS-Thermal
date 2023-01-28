@@ -59,7 +59,7 @@ public class BasicThermalRecipeJS extends ThermalRecipeJS {
 		}
 		 */
 
-		json.addProperty("energy", 4000);
+		// json.addProperty("energy", 4000);
 	}
 
 	public BasicThermalRecipeJS experience(float e) {

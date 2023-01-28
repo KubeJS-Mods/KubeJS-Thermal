@@ -7,27 +7,12 @@ import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-/**
- * @author LatvianModder
- */
-public class TreeExtractorBoostRecipeJS extends ThermalRecipeJS {
+public class SingleIngredientRecipeJS extends ThermalRecipeJS {
 	public Ingredient ingredient;
 
 	@Override
 	public void create(RecipeArguments args) {
 		ingredient = parseItemInput(args.get(0));
-	}
-
-	public TreeExtractorBoostRecipeJS output(float f) {
-		json.addProperty("output", f);
-		save();
-		return this;
-	}
-
-	public TreeExtractorBoostRecipeJS cycles(int c) {
-		json.addProperty("cycles", c);
-		save();
-		return this;
 	}
 
 	@Override

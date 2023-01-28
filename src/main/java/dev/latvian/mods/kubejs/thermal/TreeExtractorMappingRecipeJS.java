@@ -2,8 +2,13 @@ package dev.latvian.mods.kubejs.thermal;
 
 import dev.latvian.mods.kubejs.fluid.EmptyFluidStackJS;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
+import dev.latvian.mods.kubejs.recipe.IngredientMatch;
+import dev.latvian.mods.kubejs.recipe.ItemInputTransformer;
+import dev.latvian.mods.kubejs.recipe.ItemOutputTransformer;
 import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 /**
  * @author LatvianModder
@@ -44,5 +49,25 @@ public class TreeExtractorMappingRecipeJS extends ThermalRecipeJS {
 		if (serializeInputs) {
 			json.add("result", outputFluid.toJson());
 		}
+	}
+
+	@Override
+	public boolean hasInput(IngredientMatch ingredientMatch) {
+		return false;
+	}
+
+	@Override
+	public boolean replaceInput(IngredientMatch ingredientMatch, Ingredient ingredient, ItemInputTransformer itemInputTransformer) {
+		return false;
+	}
+
+	@Override
+	public boolean hasOutput(IngredientMatch ingredientMatch) {
+		return false;
+	}
+
+	@Override
+	public boolean replaceOutput(IngredientMatch ingredientMatch, ItemStack itemStack, ItemOutputTransformer itemOutputTransformer) {
+		return false;
 	}
 }

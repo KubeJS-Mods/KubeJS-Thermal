@@ -6,10 +6,10 @@ import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 /**
  * @author LatvianModder
  */
-public class CatalystRecipeJS extends ThermalRecipeJS {
+public class CatalystRecipeJS extends SingleIngredientRecipeJS {
 	@Override
 	public void create(RecipeArguments args) {
-		inputItems.add(parseIngredientItem(args.get(0)));
+		super.create(args);
 		json.addProperty("primary_mod", 1F);
 		json.addProperty("secondary_mod", 1F);
 		json.addProperty("energy_mod", 1F);
@@ -39,17 +39,5 @@ public class CatalystRecipeJS extends ThermalRecipeJS {
 		json.addProperty("use_chance", f);
 		save();
 		return this;
-	}
-
-	@Override
-	public void deserialize() {
-		inputItems.add(parseIngredientItem(json.get("ingredient")));
-	}
-
-	@Override
-	public void serialize() {
-		if (serializeInputs) {
-			json.add("ingredient", inputItems.get(0).toJson());
-		}
 	}
 }

@@ -1,17 +1,10 @@
 package dev.latvian.mods.kubejs.thermal;
 
 
-import dev.latvian.mods.kubejs.recipe.RecipeArguments;
-
 /**
  * @author LatvianModder
  */
-public class PotionDiffuserBoostRecipeJS extends ThermalRecipeJS {
-	@Override
-	public void create(RecipeArguments args) {
-		inputItems.add(parseIngredientItem(args.get(0)));
-	}
-
+public class PotionDiffuserBoostRecipeJS extends SingleIngredientRecipeJS {
 	public PotionDiffuserBoostRecipeJS amplifier(int a) {
 		json.addProperty("amplifier", a);
 		save();
@@ -28,17 +21,5 @@ public class PotionDiffuserBoostRecipeJS extends ThermalRecipeJS {
 		json.addProperty("cycles", c);
 		save();
 		return this;
-	}
-
-	@Override
-	public void deserialize() {
-		inputItems.add(parseIngredientItem(json.get("ingredient")));
-	}
-
-	@Override
-	public void serialize() {
-		if (serializeInputs) {
-			json.add("ingredient", inputItems.get(0).toJson());
-		}
 	}
 }

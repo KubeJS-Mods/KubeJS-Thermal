@@ -45,7 +45,11 @@ public abstract class ThermalRecipeJS extends RecipeJS {
 		return o;
 	}
 
-	public FluidIngredient fluidFrom(FluidStackJS fs) {
-		return FluidIngredient.of(new FluidStack(fs.getFluid(), (int) fs.getAmount(), fs.getNbt()));
+	public FluidIngredient fluidInputFrom(FluidStackJS fs) {
+		return FluidIngredient.of(fluidOutputFrom(fs));
+	}
+
+	public FluidStack fluidOutputFrom(FluidStackJS fs) {
+		return new FluidStack(fs.getFluid(), (int) fs.getAmount(), fs.getNbt());
 	}
 }

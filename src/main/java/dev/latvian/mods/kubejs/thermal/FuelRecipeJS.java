@@ -36,8 +36,6 @@ public class FuelRecipeJS extends ThermalRecipeJS { // ThermalFuel
 		}
 		 */
 
-		json.addProperty("energy", 100000);
-
 		if (inputItems.isEmpty() && inputFluids.isEmpty()) {
 			throw new RecipeExceptionJS("Thermal recipe can't have no ingredients!");
 		}

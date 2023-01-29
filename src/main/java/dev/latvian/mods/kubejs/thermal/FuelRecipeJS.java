@@ -3,11 +3,13 @@ package dev.latvian.mods.kubejs.thermal;
 import cofh.lib.fluid.FluidIngredient;
 import cofh.lib.util.recipes.RecipeJsonUtils;
 import com.google.gson.JsonArray;
+import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.recipe.IngredientMatch;
 import dev.latvian.mods.kubejs.recipe.ItemInputTransformer;
 import dev.latvian.mods.kubejs.recipe.ItemOutputTransformer;
 import dev.latvian.mods.kubejs.recipe.RecipeArguments;
 import dev.latvian.mods.kubejs.recipe.RecipeExceptionJS;
+import dev.latvian.mods.kubejs.util.ListJS;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -26,15 +28,13 @@ public class FuelRecipeJS extends ThermalRecipeJS { // ThermalFuel
 	public void create(RecipeArguments args) {
 		inKey = "ingredients";
 
-		/*
 		for (Object o : ListJS.orSelf(args.get(0))) {
 			if (o instanceof FluidStackJS) {
-				inputFluids.add(fluidFrom((FluidStackJS) o));
+				inputFluids.add(fluidInputFrom((FluidStackJS) o));
 			} else {
-				inputItems.add(parseIngredientItem(o));
+				inputItems.add(parseItemInput(o));
 			}
 		}
-		 */
 
 		if (inputItems.isEmpty() && inputFluids.isEmpty()) {
 			throw new RecipeExceptionJS("Thermal recipe can't have no ingredients!");

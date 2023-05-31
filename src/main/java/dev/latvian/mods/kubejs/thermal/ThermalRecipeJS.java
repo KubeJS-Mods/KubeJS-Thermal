@@ -6,10 +6,48 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.fluid.InputFluid;
+import dev.latvian.mods.kubejs.item.InputItem;
 import dev.latvian.mods.kubejs.recipe.RecipeJS;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 
 public class ThermalRecipeJS extends RecipeJS {
+	@Override
+	public InputItem readInputItem(Object from) {
+		if (from instanceof JsonObject j) {
+			Ingredient ingredient;
+			int amount = 1;
+
+			if (j.has("value")) {
+				ingredient = Ingredient.fromJson(j.get("value"));
+			} else {
+				ingredient = Ingredient.fromJson(j);
+			}
+
+			if (j.has("count")) {
+				amount = j.get("count").getAsInt();
+			} else if (j.has("amount")) {
+				amount = j.get("amount").getAsInt();
+			}
+
+			return InputItem.of(ingredient, amount);
+		}
+
+		return super.readInputItem(from);
+	}
+
+	@Override
+	public JsonElement writeInputItem(InputItem value) {
+		if (value.count > 1) {
+			var json = new JsonObject();
+			json.add("value", value.ingredient.toJson());
+			json.addProperty("count", value.count);
+			return json;
+		} else {
+			return value.ingredient.toJson();
+		}
+	}
+
 	@Override
 	public boolean inputFluidHasPriority(Object from) {
 		return from instanceof InputFluid || from instanceof JsonObject j && (j.has("fluid") || j.has("fluid_tag"));

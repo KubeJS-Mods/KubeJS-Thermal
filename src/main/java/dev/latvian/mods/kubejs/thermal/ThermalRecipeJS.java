@@ -1,55 +1,45 @@
 package dev.latvian.mods.kubejs.thermal;
 
 import cofh.lib.fluid.FluidIngredient;
+import cofh.lib.util.recipes.RecipeJsonUtils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import dev.latvian.mods.kubejs.KubeJSRegistries;
 import dev.latvian.mods.kubejs.fluid.FluidStackJS;
-import dev.latvian.mods.kubejs.item.ingredient.IngredientStack;
+import dev.latvian.mods.kubejs.fluid.InputFluid;
 import dev.latvian.mods.kubejs.recipe.RecipeJS;
 import net.minecraftforge.fluids.FluidStack;
 
-/**
- * @author LatvianModder
- */
-public abstract class ThermalRecipeJS extends RecipeJS {
+public class ThermalRecipeJS extends RecipeJS {
 	@Override
-	public JsonElement serializeIngredientStack(IngredientStack in) {
-		JsonObject o = new JsonObject();
-		o.addProperty("count", in.getCount());
-		o.add("value", in.getIngredient().toJson());
-		return o;
+	public boolean inputFluidHasPriority(Object from) {
+		return from instanceof InputFluid || from instanceof JsonObject j && (j.has("fluid") || j.has("fluid_tag"));
 	}
 
-	public ThermalRecipeJS energy(int e) {
-		json.addProperty("energy", e);
-		save();
-		return this;
-	}
-
-	public ThermalRecipeJS energyMod(float e) {
-		json.addProperty("energy_mod", e);
-		save();
-		return this;
-	}
-
-	public JsonElement fluidToJson(FluidStack fluidStack) {
-		JsonObject o = new JsonObject();
-		o.addProperty("amount", fluidStack.getAmount());
-		o.addProperty("fluid", KubeJSRegistries.fluids().getId(fluidStack.getFluid()).toString());
-
-		if (fluidStack.hasTag()) {
-			o.addProperty("nbt", fluidStack.getTag().toString());
+	@Override
+	public InputFluid readInputFluid(Object from) {
+		if (from instanceof ThermalInputFluid fluid) {
+			return fluid;
+		} else if (from instanceof FluidIngredient fluid) {
+			return new ThermalInputFluid(fluid);
+		} else if (from instanceof JsonElement j) {
+			return new ThermalInputFluid(RecipeJsonUtils.parseFluidIngredient(j));
+		} else if (from instanceof FluidStackJS fluid) {
+			return new ThermalInputFluid(FluidIngredient.of(new FluidStack(fluid.getFluid(), (int) fluid.getAmount(), fluid.getNbt())));
+		} else if (from instanceof FluidStack fluid) {
+			return new ThermalInputFluid(FluidIngredient.of(fluid));
+		} else {
+			return ThermalInputFluid.EMPTY;
 		}
-
-		return o;
 	}
 
-	public FluidIngredient fluidInputFrom(FluidStackJS fs) {
-		return FluidIngredient.of(fluidOutputFrom(fs));
-	}
-
-	public FluidStack fluidOutputFrom(FluidStackJS fs) {
-		return new FluidStack(fs.getFluid(), (int) fs.getAmount(), fs.getNbt());
+	@Override
+	public JsonElement writeInputFluid(InputFluid value) {
+		if (value instanceof ThermalInputFluid fluid) {
+			return fluid.ingredient().toJson();
+		} else if (value instanceof FluidIngredient fluid) {
+			return fluid.toJson();
+		} else {
+			return ThermalInputFluid.EMPTY.ingredient().toJson();
+		}
 	}
 }

@@ -79,8 +79,9 @@ dependencies {
 	modImplementation("curse.maven:thermal-cultivation-271835:${thermal_cultivation_file}")
 	modImplementation("curse.maven:thermal-locomotion-406959:${thermal_locomotion_file}")
 	modImplementation("curse.maven:thermal-innovation-291737:${thermal_innovation_file}")
+	modImplementation("curse.maven:thermal-dynamics-227443:${thermal_dynamics_file}")
 
-	modImplementation("com.teamcofh:thermal_core:1.19.2-10.0.0.1")
+	modImplementation("com.teamcofh:thermal_core:1.19.2-10.2.+")
 }
 
 processResources {

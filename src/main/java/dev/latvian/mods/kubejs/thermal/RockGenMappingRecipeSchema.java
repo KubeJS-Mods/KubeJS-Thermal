@@ -15,7 +15,7 @@ public interface RockGenMappingRecipeSchema { // RockGenMapping
 	RecipeKey<OutputItem> RESULT = ItemComponents.OUTPUT.key(RecipeJsonUtils.RESULT).alt(RecipeJsonUtils.ITEM);
 	RecipeKey<Block> BELOW = BlockComponent.INPUT.key(RecipeJsonUtils.BELOW).optional(Blocks.AIR).alt(RecipeJsonUtils.BASE).allowEmpty();
 	RecipeKey<Block> ADJACENT = BlockComponent.INPUT.key(RecipeJsonUtils.ADJACENT).optional(Blocks.AIR).allowEmpty();
-	RecipeKey<Integer> TIME = NumberComponent.INT.key(RecipeJsonUtils.TIME).optional(() -> RockGenManager.instance().getDefaultEnergy());
+	RecipeKey<Integer> TIME = NumberComponent.INT.key(RecipeJsonUtils.TIME).optional(type -> RockGenManager.instance().getDefaultEnergy());
 
 	RecipeSchema SCHEMA = new RecipeSchema(ThermalRecipeJS.class, ThermalRecipeJS::new, RESULT, BELOW, ADJACENT, TIME);
 }

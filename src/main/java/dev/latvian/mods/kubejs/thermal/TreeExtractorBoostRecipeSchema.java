@@ -12,7 +12,7 @@ public interface TreeExtractorBoostRecipeSchema { // TreeExtractorBoost
 	RecipeKey<InputItem> INGREDIENT = ItemComponents.INPUT.key(RecipeJsonUtils.INGREDIENT);
 	RecipeKey<Float> OUTPUT = NumberComponent.FLOAT.key(RecipeJsonUtils.OUTPUT).optional(1F);
 	RecipeKey<Float> OUTPUT_MOD = NumberComponent.FLOAT.key(RecipeJsonUtils.OUTPUT_MOD).optional(1F).exclude().preferred("outputMod");
-	RecipeKey<Integer> CYCLES = NumberComponent.INT.key(RecipeJsonUtils.CYCLES).optional(() -> TreeExtractorManager.instance().getDefaultEnergy());
+	RecipeKey<Integer> CYCLES = NumberComponent.INT.key(RecipeJsonUtils.CYCLES).optional(type -> TreeExtractorManager.instance().getDefaultEnergy());
 
 	RecipeSchema SCHEMA = new RecipeSchema(ThermalRecipeJS.class, ThermalRecipeJS::new, INGREDIENT, OUTPUT, OUTPUT_MOD, CYCLES);
 }

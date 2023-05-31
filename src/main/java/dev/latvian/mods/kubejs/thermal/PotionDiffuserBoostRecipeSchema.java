@@ -12,7 +12,7 @@ public interface PotionDiffuserBoostRecipeSchema { // PotionDiffuserBoost
 	RecipeKey<InputItem> INGREDIENT = ItemComponents.INPUT.key(RecipeJsonUtils.INGREDIENT);
 	RecipeKey<Integer> AMPLIFIER = NumberComponent.INT.key(RecipeJsonUtils.AMPLIFIER).optional(0);
 	RecipeKey<Float> DURATION_MOD = NumberComponent.FLOAT.key(RecipeJsonUtils.DURATION_MOD).optional(1F).preferred("durationMod");
-	RecipeKey<Integer> CYCLES = NumberComponent.INT.key(RecipeJsonUtils.CYCLES).optional(() -> PotionDiffuserManager.instance().getDefaultEnergy());
+	RecipeKey<Integer> CYCLES = NumberComponent.INT.key(RecipeJsonUtils.CYCLES).optional(type -> PotionDiffuserManager.instance().getDefaultEnergy());
 
 	RecipeSchema SCHEMA = new RecipeSchema(ThermalRecipeJS.class, ThermalRecipeJS::new, INGREDIENT, AMPLIFIER, DURATION_MOD, CYCLES);
 }

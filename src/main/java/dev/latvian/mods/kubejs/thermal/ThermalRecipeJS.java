@@ -4,7 +4,6 @@ import cofh.lib.fluid.FluidIngredient;
 import cofh.lib.util.recipes.RecipeJsonUtils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.fluid.InputFluid;
 import dev.latvian.mods.kubejs.item.InputItem;
 import dev.latvian.mods.kubejs.recipe.RecipeJS;
@@ -55,29 +54,23 @@ public class ThermalRecipeJS extends RecipeJS {
 
 	@Override
 	public InputFluid readInputFluid(Object from) {
-		if (from instanceof ThermalInputFluid fluid) {
+		if (from instanceof InputFluid fluid) {
 			return fluid;
-		} else if (from instanceof FluidIngredient fluid) {
-			return new ThermalInputFluid(fluid);
 		} else if (from instanceof JsonElement j) {
-			return new ThermalInputFluid(RecipeJsonUtils.parseFluidIngredient(j));
-		} else if (from instanceof FluidStackJS fluid) {
-			return new ThermalInputFluid(FluidIngredient.of(new FluidStack(fluid.getFluid(), (int) fluid.getAmount(), fluid.getNbt())));
+			return (InputFluid) RecipeJsonUtils.parseFluidIngredient(j);
 		} else if (from instanceof FluidStack fluid) {
-			return new ThermalInputFluid(FluidIngredient.of(fluid));
+			return (InputFluid) FluidIngredient.of(fluid);
 		} else {
-			return ThermalInputFluid.EMPTY;
+			return (InputFluid) FluidIngredient.EMPTY;
 		}
 	}
 
 	@Override
 	public JsonElement writeInputFluid(InputFluid value) {
-		if (value instanceof ThermalInputFluid fluid) {
-			return fluid.ingredient().toJson();
-		} else if (value instanceof FluidIngredient fluid) {
+		if (value instanceof FluidIngredient fluid) {
 			return fluid.toJson();
 		} else {
-			return ThermalInputFluid.EMPTY.ingredient().toJson();
+			return FluidIngredient.EMPTY.toJson();
 		}
 	}
 }

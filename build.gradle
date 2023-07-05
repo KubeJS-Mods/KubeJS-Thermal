@@ -18,6 +18,7 @@ loom {
 	silentMojangMappingsLicense()
 
 	forge {
+		mixinConfig "kubejs-thermal.mixins.json"
 //		useFabricMixin = true
 
 		dataGen {

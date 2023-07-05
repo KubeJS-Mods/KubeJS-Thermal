@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "dev.latvian.mods.kubejs.thermal.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"FluidIngredientMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1,
+		"maxShiftBy": 2
+	},
+	"minVersion": "0.8"
+}

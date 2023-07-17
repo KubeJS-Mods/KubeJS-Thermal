@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[32,)"
-issueTrackerURL = "https://github.com/KubeJS-Mods/KubeJS-Thermal/issues"
+issueTrackerURL = "https://kubejs.com/support?source=kubejs_thermal&mc=1902&loader=forge"
 license = "GNU LGPLv3"
 
 [[mods]]
@@ -16,7 +16,7 @@ license = "GNU LGPLv3"
 [[dependencies.kubejs_thermal]]
 modId = "kubejs"
 mandatory = true
-versionRange = "[1802.5.2-build.415,)"
+versionRange = "[1902.6.1-build.287,)"
 ordering = "AFTER"
 side = "BOTH"
 

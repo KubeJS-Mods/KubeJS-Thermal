@@ -16,7 +16,7 @@ license = "GNU LGPLv3"
 [[dependencies.kubejs_thermal]]
 modId = "kubejs"
 mandatory = true
-versionRange = "[1902.6.1-build.287,)"
+versionRange = "[1902.6.1-build.300,)"
 ordering = "AFTER"
 side = "BOTH"
 

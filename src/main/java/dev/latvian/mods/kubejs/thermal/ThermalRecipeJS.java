@@ -4,11 +4,16 @@ import cofh.lib.fluid.FluidIngredient;
 import cofh.lib.util.recipes.RecipeJsonUtils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.architectury.hooks.fluid.forge.FluidStackHooksForge;
+import dev.latvian.mods.kubejs.fluid.FluidStackJS;
 import dev.latvian.mods.kubejs.fluid.InputFluid;
 import dev.latvian.mods.kubejs.item.InputItem;
 import dev.latvian.mods.kubejs.recipe.RecipeJS;
+import dev.latvian.mods.kubejs.util.ListJS;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
 
 public class ThermalRecipeJS extends RecipeJS {
 	@Override
@@ -54,15 +59,31 @@ public class ThermalRecipeJS extends RecipeJS {
 
 	@Override
 	public InputFluid readInputFluid(Object from) {
-		if (from instanceof InputFluid fluid) {
-			return fluid;
+		if (from instanceof InputFluid input) {
+			if (input instanceof FluidIngredient) {
+				return input;
+			} else if (input instanceof FluidStackJS fluid) {
+				return (InputFluid) FluidIngredient.of(FluidStackHooksForge.toForge(fluid.getFluidStack()));
+			}
 		} else if (from instanceof JsonElement j) {
 			return (InputFluid) RecipeJsonUtils.parseFluidIngredient(j);
 		} else if (from instanceof FluidStack fluid) {
 			return (InputFluid) FluidIngredient.of(fluid);
 		} else {
-			return (InputFluid) FluidIngredient.EMPTY;
+			var list = ListJS.orSelf(from);
+			var fluidStacks = new ArrayList<FluidStack>();
+			for (var element : list) {
+				var fluid = FluidStackJS.of(element);
+				if (!fluid.kjs$isEmpty()) {
+					fluidStacks.add(FluidStackHooksForge.toForge(fluid.getFluidStack()));
+				}
+			}
+			if (!fluidStacks.isEmpty()) {
+				return (InputFluid) FluidIngredient.of(fluidStacks.stream());
+			}
 		}
+
+		return (InputFluid) FluidIngredient.EMPTY;
 	}
 
 	@Override

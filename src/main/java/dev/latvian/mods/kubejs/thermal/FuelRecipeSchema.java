@@ -1,7 +1,7 @@
 package dev.latvian.mods.kubejs.thermal;
 
 import cofh.lib.util.recipes.RecipeJsonUtils;
-import cofh.thermal.core.init.TCoreRecipeTypes;
+import cofh.thermal.core.init.registries.TCoreRecipeTypes;
 import cofh.thermal.core.util.managers.dynamo.CompressionFuelManager;
 import cofh.thermal.core.util.managers.dynamo.DisenchantmentFuelManager;
 import cofh.thermal.core.util.managers.dynamo.GourmandFuelManager;

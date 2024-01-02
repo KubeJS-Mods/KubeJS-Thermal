@@ -2,7 +2,7 @@ package dev.latvian.mods.kubejs.thermal;
 
 
 import cofh.lib.util.constants.ModIds;
-import cofh.thermal.core.init.TCoreRecipeTypes;
+import cofh.thermal.core.init.registries.TCoreRecipeTypes;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 import dev.latvian.mods.kubejs.recipe.schema.RegisterRecipeSchemasEvent;
 

@@ -1,7 +1,7 @@
 package dev.latvian.mods.kubejs.thermal;
 
 import cofh.lib.util.recipes.RecipeJsonUtils;
-import cofh.thermal.core.init.TCoreRecipeTypes;
+import cofh.thermal.core.init.registries.TCoreRecipeTypes;
 import cofh.thermal.core.util.managers.machine.BottlerRecipeManager;
 import cofh.thermal.core.util.managers.machine.BrewerRecipeManager;
 import cofh.thermal.core.util.managers.machine.CentrifugeRecipeManager;

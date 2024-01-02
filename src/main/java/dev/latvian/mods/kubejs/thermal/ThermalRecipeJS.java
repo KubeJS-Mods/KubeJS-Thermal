@@ -1,6 +1,6 @@
 package dev.latvian.mods.kubejs.thermal;
 
-import cofh.lib.fluid.FluidIngredient;
+import cofh.lib.common.fluid.FluidIngredient;
 import cofh.lib.util.recipes.RecipeJsonUtils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

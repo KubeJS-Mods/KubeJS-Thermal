@@ -5,8 +5,14 @@ import cofh.lib.util.constants.ModIds;
 import cofh.thermal.core.init.registries.TCoreRecipeTypes;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 import dev.latvian.mods.kubejs.recipe.schema.RegisterRecipeSchemasEvent;
+import dev.latvian.mods.kubejs.registry.RegistryInfo;
 
 public class KubeJSThermalPlugin extends KubeJSPlugin {
+	@Override
+	public void init() {
+		RegistryInfo.ITEM.addType("thermal_augment", ThermalAugmentItemBuilder.class, ThermalAugmentItemBuilder::new);
+	}
+
 	@Override
 	public void registerRecipeSchemas(RegisterRecipeSchemasEvent event) {
 		event.namespace(ModIds.ID_THERMAL)

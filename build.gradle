@@ -4,8 +4,6 @@ plugins {
 	id "me.shedaniel.unified-publishing" version "0.1.+"
 }
 
-apply from: 'https://files.latmod.com/public/markdown-git-changelog.gradle'
-
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
@@ -163,7 +161,6 @@ unifiedPublishing {
 		]
 		gameLoaders = ["forge"]
 		displayName = "$mod_name Forge $project.version"
-		changelog = getGitChangelog()
 		mainPublication remapJar
 
 		relations {
